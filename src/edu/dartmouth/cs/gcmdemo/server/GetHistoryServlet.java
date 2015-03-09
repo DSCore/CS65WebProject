@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.dartmouth.cs.gcmdemo.server.data.ExerciseDatastore;
-import edu.dartmouth.cs.gcmdemo.server.data.ExerciseEntity;
+import edu.dartmouth.cs.gcmdemo.server.data.ExcursionDatastore;
+import edu.dartmouth.cs.gcmdemo.server.data.ExcursionEntity;
 import edu.dartmouth.cs.gcmdemo.server.data.PostDatastore;
 import edu.dartmouth.cs.gcmdemo.server.data.PostEntity;
 
@@ -19,10 +19,10 @@ public class GetHistoryServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		ArrayList<ExerciseEntity> postList = ExerciseDatastore.query();
+		ArrayList<ExcursionEntity> postList = ExcursionDatastore.query();
 
 		PrintWriter out = resp.getWriter();
-		for (ExerciseEntity entity : postList) {
+		for (ExcursionEntity entity : postList) {
 			out.append(entity.mDateTime + "    " + entity.id + "\n");
 		}
 	}

@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class ExerciseEntity {
+public class ExcursionEntity {
 	public static String ENTITY_KIND_PARENT = "PostParent";
 	public static String ENTITY_PARENT_KEY = ENTITY_KIND_PARENT;
 	public static String ENTITY_KIND_POST = "Post";
@@ -43,10 +43,10 @@ public class ExerciseEntity {
     public String mLocationList;  // String representation of the locationList
     public ArrayList<String> mPictures; //String representation of the pictures
 
-	public ExerciseEntity() {
+	public ExcursionEntity() {
 	}
 
-	public ExerciseEntity(
+	public ExcursionEntity(
 			Long id, 
 			int inputType, 
 			int activityType, 
@@ -78,7 +78,7 @@ public class ExerciseEntity {
 				
 	}
 	
-	public ExerciseEntity(long id, int inputType, int activityType, String dateTime, 
+	public ExcursionEntity(long id, int inputType, int activityType, String dateTime, 
 			int duration, double distance, double avgSpeed, int calorie, 
 			double climb, int heartRate, String comment, String locations, ArrayList<String> pictures){
 		this.id = id;

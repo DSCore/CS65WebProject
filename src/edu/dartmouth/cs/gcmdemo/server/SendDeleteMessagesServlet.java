@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.dartmouth.cs.gcmdemo.server.data.ExerciseDatastore;
+import edu.dartmouth.cs.gcmdemo.server.data.ExcursionDatastore;
 import edu.dartmouth.cs.gcmdemo.server.data.RegDatastore;
 import edu.dartmouth.cs.gcmdemo.gcm.Message;
 import edu.dartmouth.cs.gcmdemo.gcm.Sender;
@@ -53,7 +53,7 @@ public class SendDeleteMessagesServlet extends HttpServlet {
 
 		long idToDelete = Long.parseLong(req.getParameter("id"));
 		
-		ExerciseDatastore.delete(idToDelete);
+		ExcursionDatastore.delete(idToDelete);
 		
 		// Have to hard-coding the API key when creating the Sender
 		Sender sender = new Sender(Globals.GCMAPIKEY);

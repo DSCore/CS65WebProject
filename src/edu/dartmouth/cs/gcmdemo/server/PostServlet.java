@@ -21,8 +21,8 @@ import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
-import edu.dartmouth.cs.gcmdemo.server.data.ExerciseDatastore;
-import edu.dartmouth.cs.gcmdemo.server.data.ExerciseEntity;
+import edu.dartmouth.cs.gcmdemo.server.data.ExcursionDatastore;
+import edu.dartmouth.cs.gcmdemo.server.data.ExcursionEntity;
 import edu.dartmouth.cs.gcmdemo.server.data.PostDatastore;
 import edu.dartmouth.cs.gcmdemo.server.data.PostEntity;
 
@@ -43,15 +43,15 @@ public class PostServlet extends HttpServlet {
 		}
 		if(from.equals("phone")){
 			System.out.println("Calling query to update server screen");
-			System.out.println("The current contents in the datastore are: "+ExerciseDatastore.query().size());
-			System.out.println(ExerciseDatastore.query().toString());
+			System.out.println("The current contents in the datastore are: "+ExcursionDatastore.query().size());
+			System.out.println(ExcursionDatastore.query().toString());
 			resp.sendRedirect("/query.do");
 		}
 	}
 	
 	public void storeJsonInDatastore(String text){
 		//Clear out the datastore for replacement
-		ExerciseDatastore.clear();
+//		ExcursionDatastore.clear();
 		//Convert array to a JSON array of JSON objects. 
 		try {
 			JSONArray jsonArray = new JSONArray(text);
@@ -112,8 +112,17 @@ public class PostServlet extends HttpServlet {
 				}
 				
 				try{
+					locations = (String)jsonObject.get("locations");
+				}
+				catch(com.google.appengine.labs.repackaged.org.json.JSONException je){
+					System.out.println("One of the fields wasn't "
+							+ "passed since it was null. Using default values instead.");
+				}
+				
+				
+//				try{
 					//Store the image representation of the string on the server
-					pictures.add((String)jsonObject.get("pictures"));
+//					pictures.add((String)jsonObject.get("pictures"));
 					
 					
 					
@@ -134,14 +143,14 @@ public class PostServlet extends HttpServlet {
 					
 					//Store the blob in the Excursion;
 //					Blob blob = new Blob(bytes);
-				}
-				catch(com.google.appengine.labs.repackaged.org.json.JSONException je){
-					System.out.println("One of the fields wasn't "
-							+ "passed since it was null. Using default values instead.");
-				}
+//				}
+//				catch(com.google.appengine.labs.repackaged.org.json.JSONException je){
+//					System.out.println("One of the fields wasn't "
+//							+ "passed since it was null. Using default values instead.");
+//				}
 				
 				//Build the EE
-				ExerciseEntity ee = new ExerciseEntity(
+				ExcursionEntity ee = new ExcursionEntity(
 						id,
 						inputType,
 						activityType,
@@ -156,7 +165,8 @@ public class PostServlet extends HttpServlet {
 						locations,
 						pictures);
 				//Add the EE to the ExerciseDataStore
-				ExerciseDatastore.add(ee);
+				ExcursionDatastore.add(ee);
+				System.out.println("Added new excursion");
 			}
 		} 
 		catch (JSONException e) {
